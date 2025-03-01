@@ -1,14 +1,13 @@
 package com.abc.user.management.backend;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 class JenkinsTest {
 
     @Test
     void testJenkinsBuild() {
         System.out.println("Running Jenkins build test");
-        assertEquals(4, 2+2);
+        assertEquals(6, 4+2);
     }
 }
