@@ -44,6 +44,12 @@ pipeline {
             }
         }
 
+        stage('Setup Node.js') {
+            steps {
+                sh 'export PATH=$PATH:/usr/local/bin && npm install'
+            }
+        }
+        
         stage('Check Environment') {
             steps {
                 sh 'echo $PATH'
