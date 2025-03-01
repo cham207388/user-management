@@ -67,16 +67,20 @@ pipeline {
         //         }
         //     }
         // }
-
+        stage('Get Commit Hash') {
+            steps {
+                script {
+                    // Store commit hash in environment variable so it's available across stages
+                    env.COMMIT_HASH = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
+                    echo "Commit Hash: ${env.COMMIT_HASH}"
+                }
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Get the commit hash from the Jenkins environment
-                    String commitHash = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
-                    print commitHash
-
-                    // Build the Docker image with the commit hash as the tag
-                    sh "docker build -t $DOCKER_IMAGE:${commitHash} -f user-management/Dockerfile ."
+                    echo "Building Docker image with tag: ${env.COMMIT_HASH}"
+                    sh "docker build -t $DOCKER_IMAGE:${env.COMMIT_HASH} -f user-management/Dockerfile ."
                 }
             }
         }
@@ -84,9 +88,16 @@ pipeline {
         stage('Push Docker Image to DockerHub') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: env.DOCKER_CREDENTIALS_ID, usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    withCredentials([
+                        usernamePassword(
+                            credentialsId: env.DOCKER_CREDENTIALS_ID,
+                            usernameVariable: 'DOCKER_USER',
+                            passwordVariable: 'DOCKER_PASS'
+                        )
+                    ]) {
                         sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
-                        sh "docker push $DOCKER_IMAGE:${commitHash}"
+                        echo "Pushing Docker image with tag: ${env.COMMIT_HASH}"
+                        sh "docker push $DOCKER_IMAGE:${env.COMMIT_HASH}"
                     }
                 }
             }
