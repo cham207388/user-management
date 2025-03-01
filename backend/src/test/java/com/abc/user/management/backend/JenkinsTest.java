@@ -8,6 +8,6 @@ class JenkinsTest {
     @Test
     void testJenkinsBuild() {
         System.out.println("Running Jenkins build test");
-        assertEquals(6, 4+2);
+        assertEquals(6, 4+3);
     }
 }
