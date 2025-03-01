@@ -73,6 +73,7 @@ pipeline {
                 script {
                     // Get the commit hash from the Jenkins environment
                     String commitHash = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
+                    print commitHash
 
                     // Build the Docker image with the commit hash as the tag
                     sh "docker build -t $DOCKER_IMAGE:${commitHash} -f user-management/Dockerfile ."
