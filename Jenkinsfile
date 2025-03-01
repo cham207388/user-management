@@ -43,21 +43,25 @@ pipeline {
                 }
             }
         }
-        
+
         // I will come back to this
-        // stage('Build Frontend (React)') {
-        //     steps {
-        //         dir('user-management/web') {
-        //             sh 'npm install'
-        //             sh 'npm run build'
-        //         }
-        //     }
-        // }
+        stage('Build Frontend (React)') {
+            steps {
+                dir('user-management/web') {
+                    sh 'npm install'
+                    sh 'npm run build'
+                }
+            }
+        }
 
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t $DOCKER_IMAGE:latest -f user-management/Dockerfile .'
+                    // Get the commit hash from the Jenkins environment
+                    String commitHash = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
+
+                    // Build the Docker image with the commit hash as the tag
+                    sh "docker build -t $DOCKER_IMAGE:${commitHash} -f user-management/Dockerfile ."
                 }
             }
         }
