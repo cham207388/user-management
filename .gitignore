@@ -1,0 +1,102 @@
+# .gitignore for User Management Project (Root Directory)
+
+### General ###
+*.log
+*.tmp
+*.swp
+*.DS_Store
+*.env
+*.env.local
+*.env.development
+*.env.production
+.cache/
+.temp/
+.DS_Store
+
+### Backend (Spring Boot + Gradle) ###
+# Gradle
+backend/.gradle/
+backend/build/
+!backend/gradle-wrapper.jar
+!backend/gradle-wrapper.properties
+
+# Spring Boot
+backend/target/
+backend/bin/
+backend/logs/
+backend/*.jar
+backend/*.war
+backend/*.ear
+backend/*.class
+backend/*.properties
+backend/*.yml
+backend/*.yaml
+backend/*.keystore
+backend/*.jks
+
+# IDE specific files
+backend/.idea/
+backend/*.iml
+backend/*.ipr
+backend/*.iws
+
+# Dependency directories
+backend/**/lib/
+backend/**/libs/
+
+### Frontend (React) ###
+# Node.js
+web/node_modules/
+web/npm-debug.log*
+web/yarn-debug.log*
+web/yarn-error.log*
+web/.pnpm-debug.log*
+
+# Build directories
+web/dist/
+web/build/
+web/out/
+web/.next/
+
+# Cache directories
+web/.cache/
+web/.temp/
+
+# Environment files
+web/.env
+web/.env.local
+web/.env.development
+web/.env.production
+web/.env.test
+
+# IDE specific files
+web/.vscode/
+web/.idea/
+
+### Docker ###
+# Docker
+docker-compose.override.yml
+docker-compose.yml
+docker-compose.*.yml
+**/docker-data/
+
+### Database ###
+# PostgreSQL
+**/pgdata/
+**/postgres-data/
+
+### Miscellaneous ###
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+### Root-Level Files ###
+# Ignore IDE-specific files in the root
+.idea/
+.vscode/
+*.iml
+
+# Ignore local development files
+.local/
