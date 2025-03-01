@@ -47,8 +47,8 @@ pipeline {
         stage('Build Frontend (React)') {
             steps {
                 dir('user-management/web') {
-                    sh 'npm install'
-                    sh 'npm run build'
+                    sh '/usr/local/bin/npm install'
+                    sh '/usr/local/bin/npm run build'
                 }
             }
         }
