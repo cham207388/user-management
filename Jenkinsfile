@@ -38,7 +38,7 @@ pipeline {
         stage('Run Backend Tests') {
             steps {
                 dir(env.BACKEND_DIR) {
-                    sh './gradlew test'
+                    sh './gradlew test --info --stacktrace || exit 1'
                 }
             }
         }
