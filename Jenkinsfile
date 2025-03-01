@@ -39,8 +39,16 @@ pipeline {
         stage('Run Backend Tests') {
             steps {
                 dir(env.BACKEND_DIR) {
-                    sh './gradlew test --info --stacktrace || exit 1'
+                    sh './gradlew test'
                 }
+            }
+        }
+
+        stage('Check Environment') {
+            steps {
+                sh 'echo $PATH'
+                sh 'which node || echo "Node.js not found!"'
+                sh 'which npm || echo "npm not found!"'
             }
         }
 
