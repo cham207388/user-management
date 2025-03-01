@@ -44,28 +44,29 @@ pipeline {
             }
         }
 
-        stage('Setup Node.js') {
-            steps {
-                sh 'export PATH=$PATH:/usr/local/bin && npm install'
-            }
-        }
-        
-        stage('Check Environment') {
-            steps {
-                sh 'echo $PATH'
-                sh 'which node || echo "Node.js not found!"'
-                sh 'which npm || echo "npm not found!"'
-            }
-        }
+        // unable to install node correctly for jenkins to use
+        // stage('Setup Node.js') {
+        //     steps {
+        //         sh 'export PATH=$PATH:/usr/local/bin && npm install'
+        //     }
+        // }
 
-        stage('Build Frontend (React)') {
-            steps {
-                dir('user-management/web') {
-                    sh '/usr/local/bin/npm install'
-                    sh '/usr/local/bin/npm run build'
-                }
-            }
-        }
+        // stage('Check Environment') {
+        //     steps {
+        //         sh 'echo $PATH'
+        //         sh 'which node || echo "Node.js not found!"'
+        //         sh 'which npm || echo "npm not found!"'
+        //     }
+        // }
+
+        // stage('Build Frontend (React)') {
+        //     steps {
+        //         dir('user-management/web') {
+        //             sh '/usr/local/bin/npm install'
+        //             sh '/usr/local/bin/npm run build'
+        //         }
+        //     }
+        // }
 
         stage('Build Docker Image') {
             steps {
