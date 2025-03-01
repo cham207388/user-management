@@ -3,8 +3,8 @@ pipeline {
 
     environment {
         JAVA_HOME = '/opt/java/openjdk'
-        GITHUB_CREDENTIALS_ID = 'github-credentials'
-        DOCKER_CREDENTIALS_ID = 'dockerhub-credentials'
+        GITHUB_CREDENTIALS_ID = 'github-credential'
+        DOCKER_CREDENTIALS_ID = 'dockerhub-credential'
         DOCKER_IMAGE = 'baicham/user-management-app'
         BACKEND_DIR = 'user-management/backend'
     }
