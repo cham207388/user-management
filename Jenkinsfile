@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     environment {
-        JAVA_HOME = '/opt/java/openjdk' // Java installation path
-        GITHUB_CREDENTIALS_ID = 'github-credentials'  // GitHub credentials stored in Jenkins
-        DOCKER_CREDENTIALS_ID = 'dockerhub-credentials' // DockerHub credentials stored in Jenkins
-        DOCKER_IMAGE = 'baicham/user-management-app' // Replace with your DockerHub repo
+        JAVA_HOME = '/opt/java/openjdk'
+        GITHUB_CREDENTIALS_ID = 'github-credentials'
+        DOCKER_CREDENTIALS_ID = 'dockerhub-credentials'
+        DOCKER_IMAGE = 'baicham/user-management-app'
         BACKEND_DIR = 'user-management/backend'
     }
 
@@ -30,7 +30,7 @@ pipeline {
         stage('Build Backend (Spring Boot)') {
             steps {
                 dir(env.BACKEND_DIR) {
-                    sh './gradlew clean build -x test' // Build without running tests
+                    sh './gradlew clean build -x test'
                 }
             }
         }
