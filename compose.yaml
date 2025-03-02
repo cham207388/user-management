@@ -1,21 +1,13 @@
-version: '3.8'
-
 services:
   fullstack:
-    context: .
-    dockerfile: Dockerfile
+    build:
+      context: .
+      dockerfile: Dockerfile
     depends_on:
       postgres:
         condition: service_healthy
     ports:
       - 8080:8080
-    # healthcheck:
-    #   test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
-    #   interval: 30s
-    #   timeout: 10s
-    #   retries: 3
-    #   start_period: 10s
-
   postgres:
     image: 'postgres:latest'
     environment:
