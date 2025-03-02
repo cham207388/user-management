@@ -14,6 +14,7 @@ pipeline {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: env.GITHUB_CREDENTIALS_ID, usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
+                        sh 'rm -rf user-management'
                         sh 'git clone https://$GIT_USER:$GIT_PASS@github.com/cham207388/user-management.git'
                     }
                 }
